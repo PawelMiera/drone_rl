@@ -1,6 +1,6 @@
 environment:
-  level: medium
-  env_folder: environment_0
+  level: easy
+  env_folder: environment_49
   world_box:
   - -20
   - 75
@@ -14,19 +14,19 @@ environment:
   - 0.0
   max_detection_range: 10.0
 rewards:
-  x_vel_coeff: 0.12
+  x_vel_coeff: 0.015
   collision_coeff: 0.0
-  touch_collision_coeff: -3.0
-  angular_vel_coeff: 0.0
-  survive_rew: 30.0
+  touch_collision_coeff: -5
+  angular_vel_coeff: -8e-05
+  survive_rew: 14.1
   step_coeff: 0.0
-  distance_coef: 0.2
-  finish_rew: 150.0
+  distance_coef: 0.0
+  finish_rew: 140.0
   too_low_coeff: 0.0
-  crash_penalty: -90.0
-  timeout_penalty: -90.0
-  ball_crash_penalty: -90.0
-  colision_is_crash: no
+  crash_penalty: -80.0
+  timeout_penalty: -80.0
+  ball_crash_penalty: -80.0
+  colision_is_crash: yes
   randomise_ball_position: no
   change_env_on_reset: yes
   survive_reward_distance: 71.0
@@ -65,8 +65,8 @@ simulation:
   seed: 1
   sim_dt: 0.02
   max_t: 20.0
-  num_envs: 500
-  num_threads: 20
+  num_envs: 300
+  num_threads: 12
 quadrotor_dynamics:
   mass: 0.752
   tbm_fr:

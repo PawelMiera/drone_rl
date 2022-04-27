@@ -14,13 +14,13 @@ environment:
   - 0.0
   max_detection_range: 10.0
 rewards:
-  x_vel_coeff: 0.12
+  x_vel_coeff: 0.1
   collision_coeff: 0.0
-  touch_collision_coeff: -3.0
+  touch_collision_coeff: -10.0
   angular_vel_coeff: 0.0
   survive_rew: 30.0
   step_coeff: 0.0
-  distance_coef: 0.2
+  distance_coef: 0.05
   finish_rew: 150.0
   too_low_coeff: 0.0
   crash_penalty: -90.0
