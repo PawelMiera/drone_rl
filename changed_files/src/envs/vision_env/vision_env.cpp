@@ -363,6 +363,13 @@ bool VisionEnv::computeReward(Ref<Vector<>> reward) {
 
   Scalar x_vel_reward = x_vel_coeff_ * quad_state_.v[0];
 
+     
+  if (x_vel_reward < 0)
+  {
+    x_vel_reward *= backward_velocity_coeff_;
+  }
+  
+
   // - angular velocity penalty, to avoid oscillations
   const Scalar ang_vel_penalty = angular_vel_coeff_ * quad_state_.w.norm();
 
@@ -380,17 +387,24 @@ bool VisionEnv::computeReward(Ref<Vector<>> reward) {
   {
     survive = survive_rew_;
   }
+  Vector<9> ori = Map<Vector<>>(quad_state_.R().data(), quad_state_.R().size());
 
+  Scalar angle_penalty=0.0;
+
+  if(abs(quad_state_.x(QS::ATTY))>0.4)
+  {
+    angle_penalty = too_big_angle_penalty_;
+  }
 
   //  change progress reward as survive reward
   const Scalar total_reward = x_vel_reward + collision_penalty + touch_collision_penalty + ang_vel_penalty 
-    + survive + step_penalty + distance_reward + too_low_penalty;
+    + survive + step_penalty + distance_reward + too_low_penalty + angle_penalty;
 
 
   // return all reward components for debug purposes
   // only the total reward is used by the RL algorithm
   reward << x_vel_reward, collision_penalty, touch_collision_penalty, ang_vel_penalty, survive, step_penalty, distance_reward, too_low_penalty,
-    total_reward;
+    angle_penalty, total_reward;
   return true;
 }
 
@@ -516,7 +530,7 @@ bool VisionEnv::loadParam(const YAML::Node &cfg) {
     return false;
   }
 
-  if (cfg["rewards"]) {
+if (cfg["rewards"]) {
     // load reward coefficients for reinforcement learning
     x_vel_coeff_ = cfg["rewards"]["x_vel_coeff"].as<Scalar>();
     collision_coeff_ = cfg["rewards"]["collision_coeff"].as<Scalar>();
@@ -526,7 +540,7 @@ bool VisionEnv::loadParam(const YAML::Node &cfg) {
     finish_rew_ = cfg["rewards"]["finish_rew"].as<Scalar>();
     too_low_coeff_ = cfg["rewards"]["too_low_coeff"].as<Scalar>();
     crash_penalty_ = cfg["rewards"]["crash_penalty"].as<Scalar>();
-    distance_coeff_ = cfg["rewards"]["distance_coef"].as<Scalar>();
+    distance_coeff_ = cfg["rewards"]["distance_coeff"].as<Scalar>();
     touch_collision_coeff_ = cfg["rewards"]["touch_collision_coeff"].as<Scalar>();
     timeout_penalty_ = cfg["rewards"]["timeout_penalty"].as<Scalar>();
     ball_crash_penalty_ = cfg["rewards"]["ball_crash_penalty"].as<Scalar>();
@@ -535,6 +549,9 @@ bool VisionEnv::loadParam(const YAML::Node &cfg) {
     
     survive_reward_distance = cfg["rewards"]["survive_reward_distance"].as<Scalar>();
     end_distance = cfg["rewards"]["end_distance"].as<Scalar>();
+
+    too_big_angle_penalty_ = cfg["rewards"]["too_big_angle_penalty"].as<Scalar>();
+    backward_velocity_coeff_ = cfg["rewards"]["backward_velocity_coeff"].as<Scalar>();
 
     // load reward settings
     reward_names_ = cfg["rewards"]["names"].as<std::vector<std::string>>();
