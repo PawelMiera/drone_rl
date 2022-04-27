@@ -32,7 +32,7 @@ Opis parametrów:
   change_env_on_reset: no     -- zmienia env po kazdym resecie (pozycje kulek)  nie dziala z obrazem  
   survive_reward_distance: 71.0   -- jesli x wiekszy od tego to dodaje sie survive_rew  
   end_distance: 74.0     
-  too_big_angle_penalty: -10    -- if abs(angle > 0.4): nagroda = too_big_angle_penalty  
+  too_big_angle_penalty: -10    -- if abs(angle > 0.4): nagroda = too_big_angle_penalty (raczej przydatne do latania na obrazie)
   backward_velocity_coeff: 3    -- if x_vel < 0: nagroda = x_vel * x_vel_coeff * backward_velocity_coeff  
 
   names:
