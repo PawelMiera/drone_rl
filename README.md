@@ -46,3 +46,17 @@ Opis parametrów:
   - too_low_penalty
   - too_big_angle_penalty
   - total
+
+
+Rozkład komputerów w lab:
+
+- cubryba, bystra - kod przystosowany do latania na pozycji kulek,  
+- gerlach, kasprowy - latanie na obrazie, moduł rpg_baselines ma zmienione pliki ppo.py i on_policy_algorithm.py.
+
+
+na wszystkich komputerach kod znajduje się w folderze nie_wchodzic + numer  
+
+w agh_code są pliki do szkolenie, a w agile_flight znajduje się symulator.
+
+Pliki symulatora między komputerami się różnią, Inne obserwacje i nagrody. Opis jak to zmienić znajduje się w pliku docs:  
+https://docs.google.com/document/d/1mtdSfOj0neY35MzohSr5YWWkzpxtiUfTl39LeUlzIpM/edit
