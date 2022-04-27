@@ -1,0 +1,112 @@
+environment:
+  level: easy
+  env_folder: environment_0
+  world_box:
+  - -20
+  - 75
+  - -10
+  - 10
+  - 0.0
+  - 10
+  goal_vel:
+  - 3.0
+  - 0.0
+  - 0.0
+  max_detection_range: 10.0
+rewards:
+  x_vel_coeff: 0.013
+  collision_coeff: 0.0
+  touch_collision_coeff: -4.5
+  angular_vel_coeff: -5e-04
+  survive_rew: 0.9
+  step_coeff: 0.0
+  distance_coef: 0.0001
+  finish_rew: 40.0
+  too_low_coeff: 0.0
+  crash_penalty: -50.0
+  timeout_penalty: -50.0
+  ball_crash_penalty: -44.0
+  colision_is_crash: yes
+  randomise_ball_position: no
+  change_env_on_reset: yes
+  survive_reward_distance: 69.0
+  end_distance: 72.0
+  names:
+  - x_vel_reward
+  - collision_penalty
+  - touch_collision_penalty
+  - ang_vel_penalty
+  - survive_rew
+  - step_penalty
+  - distance_reward
+  - too_low_penalty
+  - total
+rgb_camera:
+  on: yes
+  t_BC:
+  - 0.0
+  - 0.0
+  - 0.3
+  r_BC:
+  - 0.0
+  - 0.0
+  - -90
+  channels: 3
+  width: 320
+  height: 240
+  fov: 70.0
+  enable_depth: yes
+  enable_segmentation: no
+  enable_opticalflow: no
+unity:
+  scene_id: 0
+  render: no
+simulation:
+  seed: 1
+  sim_dt: 0.02
+  max_t: 20.0
+  num_envs: 300
+  num_threads: 12
+quadrotor_dynamics:
+  mass: 0.752
+  tbm_fr:
+  - 0.075
+  - -0.1
+  - 0.0
+  tbm_bl:
+  - -0.075
+  - 0.1
+  - 0.0
+  tbm_br:
+  - -0.075
+  - -0.1
+  - 0.0
+  tbm_fl:
+  - 0.075
+  - 0.1
+  - 0.0
+  omega_max:
+  - 6.0
+  - 6.0
+  - 2.0
+  inertia:
+  - 0.0025
+  - 0.0021
+  - 0.0043
+  kappa: 0.022
+  motor_omega_min: 150.0
+  motor_omega_max: 2800.0
+  motor_tau: 0.033
+  thrust_map:
+  - 1.562522e-06
+  - 0.0
+  - 0.0
+  body_drag_1:
+  - 0.0
+  - 0.0
+  - 0.0
+  body_drag_3:
+  - 0.0
+  - 0.0
+  - 0.0
+  body_drag_h: 0.0
