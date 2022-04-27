@@ -128,7 +128,8 @@ class VisionEnv final : public EnvBase {
 
   // Define reward for training
   Scalar x_vel_coeff_, collision_coeff_, touch_collision_coeff_, angular_vel_coeff_, survive_rew_, step_coeff_, 
-  finish_rew_, distance_coeff_, crash_penalty_, timeout_penalty_, ball_crash_penalty_, too_low_coeff_;
+  finish_rew_, distance_coeff_, crash_penalty_, timeout_penalty_, ball_crash_penalty_, too_low_coeff_, 
+  too_big_angle_penalty_, backward_velocity_coeff_;
 
 
   bool colision_is_crash = false;
